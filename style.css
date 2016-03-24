@@ -80,7 +80,7 @@ body {
 }
 
 .slideshow {
-  height: 400px;
+  height: 500px;
   width: 80%;
   position: relative;
   margin-bottom: 20px;
@@ -274,7 +274,7 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-flow: wrap;
   justify-content: space-around;
 }
@@ -285,10 +285,6 @@ body {
   margin: 1%;
   color: black;
   box-shadow: 0px 0px 1px #1e2022;
-}
-
-.content .flex-container .flex-item:nth-child(1) {
-  height: 100px;
 }
 
 .footer {
@@ -317,8 +313,14 @@ body {
 }
 
 .footer nav .footer-section:last-child {
-  width: 32.5%;
+  width: 32%;
   border-right: 0px solid transparent;
+}
+
+@media (max-width: 1500px) {
+  .slideshow {
+    height: 400px;
+  }
 }
 
 @media (max-width: 1000px) {
