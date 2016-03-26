@@ -2,6 +2,10 @@
 /*
     Written content font color rgba(0,0,0,.8); ???!
     Possible Color Design (#1e2022|#51626a|#c9d6de|#f0f5f9)
+
+    When setting a parent to position: relative the % declerations of the child refer to the parent
+    and not to the whole screen!!
+
 */
 
 $background-color: #f0f5f9;
@@ -88,13 +92,13 @@ body{
     opacity: 1;
     transition: opacity .5s;
     cursor: default;
+    //disable selection
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -khtml-user-select: none;    /* Konqueror */
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* IE/Edge */
-    user-select: none;           /* non-prefixed version, currently
-                                  not supported by any browser */
+    user-select: none;
 
     .headline{
         color: $font-color-header;
@@ -273,11 +277,78 @@ body{
         justify-content: space-around;
 
         .flex-item{
-            height: 300px;
+            position: relative;
+            background-image: url("_assets/pictures/GuyInSuit.jpg");
+            background-size: cover;
+            height: 400px;
             width: 325px;
             margin: 1%;
-            color: black;
             box-shadow: 0px 0px 1px $background-color-header;
+
+            .description{
+                display: block;
+                background-color: $background-color-header;
+                padding: 2%;
+                max-height: 0;
+                transition: max-height .25s ease-out;
+
+                .text{
+                    visibility: hidden;
+                    text-decoration: none;
+                    color: $background-color;
+                    opacity: 0;
+                    transition: opacity .5s ease-out;
+
+                    h1{
+                        font-size: 25px;
+                        font-weight: 700;
+                        &::selection{
+                            background-color: white;
+                            color: black;
+                        }
+                    }
+                    p{
+                        font-size: 20px;
+                        &::selection{
+                            background-color: white;
+                            color: black;
+                        }
+                    }
+                }
+            }
+
+            .button{
+                position: absolute;
+                display: none;
+                width: 50%;
+                height: 10%;
+                font-weight: bold;
+                text-decoration: none;
+                color: $background-color;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                border: 2px solid $background-color;
+
+                .text{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                }
+            }
+
+            &:hover > .description{
+                transition: max-height .25s ease-in;
+                max-height: 200px;
+
+                .text{
+                    visibility: visible;
+                    opacity: 1;
+                    transition: opacity .5s ease-in;
+                }
+            }
+
         }
 
         .flex-item:nth-child(1){
@@ -376,7 +447,7 @@ body{
 
 }
 
-@media (max-width: 700px) {
+@media (max-width: 753px) {
     .header{
         width: auto;
         height: 150px;
@@ -442,5 +513,13 @@ body{
 @media only screen{
     .headline{
         opacity: 1;
+    }
+
+    .description{
+        display: none;
+    }
+
+    .button{
+        display: block;
     }
 }
